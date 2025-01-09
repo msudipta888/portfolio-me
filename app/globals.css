@@ -2,20 +2,185 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border !scroll-smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button {
+    @apply active:outline-none;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none; 
+  width: 8px;
+}
+
+/* Add a smooth gradient transition */
+.hover\:bg-gradient-to-r {
+  background-size: 200%;
+  transition: background-position 0.5s ease, background-color 0.5s ease;
+}
+
+.group:hover .hover\:bg-gradient-to-r {
+  background-position: right center;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+ @keyframes blob-spin {
+          0%, 100% {
+            transform: rotate(0deg) scale(1.2);
+          }
+          25% {
+            transform: rotate(90deg) scale(1.3);
+          }
+          50% {
+            transform: rotate(180deg) scale(1.2);
+          }
+          75% {
+            transform: rotate(270deg) scale(1.1);
+          }
+        }
+
+        @keyframes blob-spin-reverse {
+          0%, 100% {
+            transform: rotate(0deg) scale(1.3);
+          }
+          25% {
+            transform: rotate(-90deg) scale(1.2);
+          }
+          50% {
+            transform: rotate(-180deg) scale(1.3);
+          }
+          75% {
+            transform: rotate(-270deg) scale(1.2);
+          }
+        }
+
+        @keyframes pulse-slow {
+          0%, 100% {
+            transform: scale(1.2);
+          }
+          50% {
+            transform: scale(1.3);
+          }
+        }
+
+        @keyframes wave-slow {
+          0%, 100% {
+            transform: rotate(0deg) scale(1.2);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+          }
+          50% {
+            transform: rotate(180deg) scale(1.3);
+            border-radius: 30% 60% 70% 30% / 40% 70% 30% 60%;
+          }
+        }
+
+
+.animate-blob-spin {
+  animation: blob-spin 8s infinite linear;
+}
+
+.animate-blob-spin-reverse {
+  animation: blob-spin-reverse 10s infinite linear;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s infinite ease-in-out;
+}
+
+.animate-wave-slow {
+  animation: wave-slow 6s infinite ease-in-out;
+}
+        .bg-grid-white {
+          background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        }
+
+@layer utilities {
+  .heading {
+    @apply font-bold text-4xl md:text-5xl text-center;
+  }
+
+  .black-gradient {
+    background: linear-gradient(90deg, #161a31 0%, #06091f 100%);
+  }
 }
