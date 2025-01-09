@@ -17,7 +17,7 @@ export const TypewriterEffectSmooth = ({
   cursorClassName?: string;
 }) => {
   
-  const wordsArray = words.map((word) => {
+   words.map((word) => {
     return {
       ...word,
       text: word.text.split(""),
