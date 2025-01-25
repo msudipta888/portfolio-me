@@ -2,9 +2,9 @@
 import React from 'react'
 
 export const MagicButton = ({
-    title, Icon, position
+    title, Icon
 }: {
-    title: String, Icon: React.ReactNode, position?: String
+    title: string, Icon: React.ReactNode
 }) => {
  
   return (
