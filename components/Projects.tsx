@@ -6,7 +6,7 @@ import { PinContainer } from "./3d-pin";
 
 const Projects = () => {
   return (
-    <div className="py-20 lg:mt-52 w-full h-full" id="projects">
+    <div className="py-16 mt-24 lg:mt-52 w-full h-full" id="projects">
       <h1 className="heading text-white">
         A small selection of{" "}
         <span className="text-purple">recent projects</span>

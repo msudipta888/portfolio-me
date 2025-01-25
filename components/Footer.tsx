@@ -9,25 +9,20 @@ const Footer = () => {
        IconBrandLinkedin, IconBrandTwitter, IconBrandGithub
     }
   return (
-    <footer className='w-full pt-20 pb-10 -mb-28 lg:h-screen lg:-mb-44 overflow-hidden  overflow-y-hidden items-center' id='contact'>
+    <footer className='w-full mb-24 lg:h-screen lg:-mb-44 overflow-hidden  overflow-y-hidden items-center' id='contact'>
     
-    <div className='w-full absolute left-0 -bottom-72 min-h-96'>
-       <img src="" 
-       alt="" 
-       className='w-full h-full opacity-50'
-       />
-    </div>
+    
     <div className='flex flex-col items-center'>
         <h1 className='text-white lg:max-w-[45vw] text-2xl ml-3'>
-        Let’s Connect and <span className='text-purple'>Build Something Amazing!</span>
+        Let&#39;s Connect and <span className='text-purple'>Build Something Amazing!</span>
         </h1> <br />
         <p className="text-center font-serif max-w-2xl text-gray-400 text-lg leading-relaxed">
-        I'm a passionate Full-Stack Developer who loves crafting elegant, scalable, and user-friendly web applications. 
-          Whether it's a challenging project, collaboration, or just a conversation, feel free to reach out. 
+        I&#39;m a passionate Full-Stack Developer who loves crafting elegant, scalable, and user-friendly web applications. 
+          Whether it&#39;s a challenging project, collaboration, or just a conversation, feel free to reach out. 
           Together, we can create impactful digital experiences.
         </p> <br />
         <a href="mailto:msudipta857@gmail.com">
-            <MagicButton title="Let's get in touch"
+            <MagicButton title="Let&#39;s get in touch"
             Icon={<CircleFadingArrowUp/>} 
             />
         </a>
@@ -40,7 +35,7 @@ const Footer = () => {
         <div className='flex items-center md:gap-3 gap-6 mb-4'>
         {
             socialMedia.map((item, idx) => {
-              let IconComponent =  Icons[item.id as keyof typeof Icons];
+              const IconComponent =  Icons[item.id as keyof typeof Icons];
               return (
                 <div
                 key={idx}

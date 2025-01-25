@@ -10,7 +10,7 @@ export const TypewriterEffectSmooth = ({
   cursorClassName,
 }: {
   words: {
-    text: string;
+    text: string[];
     className?: string;
   }[];
   className?: string;
@@ -20,7 +20,7 @@ export const TypewriterEffectSmooth = ({
    words.map((word) => {
     return {
       ...word,
-      text: word.text.split(""),
+      text: word.text,
     };
   });
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -32,7 +32,7 @@ export const TypewriterEffectSmooth = ({
   const pauseDuration = 1000; 
 
   useEffect(() => {
-    const currentWord = words[currentWordIndex].text;
+    const currentWord = words[currentWordIndex].text.join(" ");
     let timeout: NodeJS.Timeout;
 
     if (!isDeleting) {

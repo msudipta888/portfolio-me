@@ -5,7 +5,6 @@ import {MagicButton} from "./ui/MagicButton";
 import { Download } from "lucide-react";
 import { TypewriterEffectSmooth } from "./ui/type-writer";
 import { BackgroundBeams } from "./ui/background-box";
-import Link from "next/link";
 
 export default function Hero() {
   const [show, setShow] = useState(false);
@@ -18,14 +17,14 @@ export default function Hero() {
   }, []);
 
   const words = [
-    { text: "Full Stack Developer" },
-    { text: "Competitive Programmer" },
-    { text: "Blockchain Enthusiast" },
-    { text: "Next.js Developer" },
+    { text: ["Full Stack Developer"] },
+    { text: ["Competitive Programmer"] },
+    { text: ["Blockchain Enthusiast"] },
+    { text: ["Next.js Developer"] },
   ];
 
   return (
-    <div className="w-full h-screen flex items-center justify-center relative overflow-hidden mt-28  lg:h-screen lg:mt-24">
+    <div className="w-full -mt-11 h-screen flex items-center justify-center relative overflow-hidden   lg:h-screen lg:mt-24">
     
       <div className="flex flex-col-reverse gap-y-8 md:flex-row items-center justify-between w-full max-w-6xl px-4">
        
@@ -46,36 +45,39 @@ export default function Hero() {
             </div>
           )}
         </div>
-
-            <div className="relative flex-shrink-0   lg:mr-11">
-            <div className="relative h-32 w-32 sm:h-40 sm:w-40 md:h-52 md:w-52 lg:h-64 lg:w-64">
-              <div className="absolute -inset-4 sm:-inset-6 md:-inset-8 lg:-inset-10 z-0">
-                <div className="absolute inset-0 animate-blob-spin">
-                  <div className="absolute inset-0 rounded-[60%_40%_30%_70%/50%_60%_40%_50%] bg-purple-500/25 blur-md"></div>
-                </div>
-                
-                <div className="absolute inset-0 animate-blob-spin-reverse">
-                  <div className="absolute inset-0 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] bg-pink-500/20 blur-md"></div>
-                </div>
-                
-                <div className="absolute inset-0 animate-pulse-slow">
-                  <div className="absolute inset-0 rounded-[45%_55%_55%_45%/45%_45%_55%_55%] bg-blue-500/20 blur-md"></div>
-                </div>
-
-                <div className="absolute inset-0 animate-wave-slow opacity-50">
-                  <div className="absolute inset-0 rounded-[40%_60%_50%_50%/50%_40%_60%_50%] bg-cyan-500/20 blur-md"></div>
-                </div>
-              </div>
-
-              <div className="relative z-10 h-full w-full rounded-full border-4 border-purple-500/50 overflow-hidden shadow-lg shadow-purple-500/20 bg-gray-900">
-                <img
-                  src="/profile.jpg"
-                  alt="Profile"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
+         {show && (
+             <div className="relative flex-shrink-0   lg:mr-11">
+             <div className="relative h-32 w-32 sm:h-40 sm:w-40 md:h-52 md:w-52 lg:h-64 lg:w-64">
+               <div className="absolute -inset-4 sm:-inset-6 md:-inset-8 lg:-inset-10 z-0">
+                 <div className="absolute inset-0 animate-blob-spin">
+                   <div className="absolute inset-0 rounded-[60%_40%_30%_70%/50%_60%_40%_50%] bg-purple-500/25 blur-md"></div>
+                 </div>
+                 
+                 <div className="absolute inset-0 animate-blob-spin-reverse">
+                   <div className="absolute inset-0 rounded-[40%_60%_70%_30%/40%_50%_60%_50%] bg-pink-500/20 blur-md"></div>
+                 </div>
+                 
+                 <div className="absolute inset-0 animate-pulse-slow">
+                   <div className="absolute inset-0 rounded-[45%_55%_55%_45%/45%_45%_55%_55%] bg-blue-500/20 blur-md"></div>
+                 </div>
+ 
+                 <div className="absolute inset-0 animate-wave-slow opacity-50">
+                   <div className="absolute inset-0 rounded-[40%_60%_50%_50%/50%_40%_60%_50%] bg-cyan-500/20 blur-md"></div>
+                 </div>
+               </div>
+ 
+               <div className="relative z-10 h-full w-full rounded-full border-4 border-purple-500/50 overflow-hidden shadow-lg shadow-purple-500/20 bg-gray-900">
+               
+                 <img
+                   src="/profile.jpg"
+                   alt="Profile"
+                   className="h-full w-full object-cover"
+                 />
+               </div>
+             </div>
+           </div>
+         )}
+           
       </div>
       <BackgroundBeams/>
 

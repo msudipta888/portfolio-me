@@ -35,7 +35,7 @@ export const navItems = [
       title: "MapQuestorApp- A Real Web-App for Travellers",
       des: "A real web-app for travellers where user can search for any place and get the details of that place and also can find nearby places.",
       img: "/mapapp.jpg",
-      iconLists: ["/react.svg", "/node.svg", "/mn.svg", "/css.jpg","/redux.svg","/api.svg"],
+      iconLists: ["/react.svg", "/node.svg", "/mn.svg", "/css.jpg","/redux.svg"],
       link: "https://github.com/msudipta888/real-time-map",
     },
     {
