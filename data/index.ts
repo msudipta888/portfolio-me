@@ -57,11 +57,11 @@ export const navItems = [
   export const socialMedia = [
     {
       id: "IconBrandLinkedin",
-      link:"'https://linkdin.com" 
+      link:"https://www.linkedin.com/in/sudipta-mondal-009625255/" 
     },
     {
       id: "IconBrandTwitter",
-      link:"'https://twitter.com" 
+      link:"https://x.com/S9248662258797" 
     },
     {
       id:"IconBrandGithub",
