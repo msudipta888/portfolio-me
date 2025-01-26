@@ -68,7 +68,7 @@ export const TypewriterEffectSmooth = ({
       className
     )}
   >
-    <span className="inline-block dark:text-pink-600 text-black">
+    <span className="inline-block dark:text-pink-600 text-pink-600">
       {currentText}
     </span>
     <motion.span
