@@ -38,7 +38,7 @@ export const TextGenerateEffect = ({
             key={word + idx}
             className={cn(
               `${word=== "Seamless" ? "block  pt-1" :"inline"} ${
-                idx > 3 ? "text-pink-400" : "dark:text-white text-black"
+                idx > 3 ? "text-pink-400" : "dark:text-white text-white"
               } opacity-0 tracking-widest`
             )}
             style={{

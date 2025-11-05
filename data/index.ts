@@ -8,9 +8,11 @@ export const navItems = [
     { name: "About", link: "#about", icon: React.createElement(IconUser),},
     { name: "Projects", link: "#projects" , icon: React.createElement(IconPresentation),},
     {name:"Skills",link:"#skills",icon:React.createElement(IconTools),},
+    { name: "Approach", link: "#approach", icon: React.createElement(IconPresentation),},
     { name: "Contact", link: "#contact", icon: React.createElement(IconPhone),},
   ];
   
+
 
 
   export const projects = [
@@ -46,6 +48,24 @@ export const navItems = [
       iconLists: ["/js.svg", "/node.svg","/telegraf.png","/ai.png"],
       link: "https://github.com/msudipta888/ContentCrafter",
     },
+    {
+  id: 5,
+  title: "ChatWithPDF — A RAG Chat Bot",
+  des: "A Telegram bot that lets you chat with PDFs using RAG-based AI. Simply upload a PDF and ask any question to get accurate, context-aware answers instantly.",
+  img: "/chat.png",
+  iconLists: [
+    '/icons/next.png',
+    '/icons/tailwind.svg',
+    '/icons/typescript.svg',
+    '/node.svg',
+    '/icons/api.svg',
+    '/icons/mongodb.jpg',
+    '/icons/docker.svg',
+    '/icons/rabbitmq.svg'
+  ],
+  link: "https://chatwithpdf-amber.vercel.app",
+}
+
   ];
   
 

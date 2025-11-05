@@ -1,162 +1,298 @@
-"use client"
+"use client";
 import { cn } from "@/lib/utils";
-import { useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
 
-export const GlareCard = ({
+export const GlareCard  = ({
   children,
   className,
 }: {
   children: React.ReactNode;
   className?: string;
 }) => {
-  const isPointerInside = useRef(false);
-  const refElement = useRef<HTMLDivElement>(null);
-  const state = useRef({
-    glare: {
-      x: 50,
-      y: 50,
-    },
-    background: {
-      x: 50,
-      y: 50,
-    },
-    rotate: {
-      x: 0,
-      y: 0,
-    },
-  });
-  const containerStyle = {
-    "--m-x": "50%",
-    "--m-y": "50%",
-    "--r-x": "0deg",
-    "--r-y": "0deg",
-    "--bg-x": "50%",
-    "--bg-y": "50%",
-    "--duration": "300ms",
-    "--foil-size": "100%",
-    "--opacity": "0",
-    "--radius": "48px",
-    "--easing": "ease",
-    "--transition": "var(--duration) var(--easing)",
-  } ;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
 
-  const backgroundStyle = {
-    "--step": "5%",
-    "--foil-svg": `url("data:image/svg+xml,%3Csvg width='26' height='26' viewBox='0 0 26 26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.99994 3.419C2.99994 3.419 21.6142 7.43646 22.7921 12.153C23.97 16.8695 3.41838 23.0306 3.41838 23.0306' stroke='white' stroke-width='5' stroke-miterlimit='3.86874' stroke-linecap='round' style='mix-blend-mode:darken'/%3E%3C/svg%3E")`,
-    "--pattern": "var(--foil-svg) center/100% no-repeat",
-    "--vivid-gradient":
-      "linear-gradient(135deg, #ff6bcb 0%, #f9c46b 25%, #6bffb0 50%, #6bbfff 75%, #b66bff 100%)",
-    "--dynamic-gradient":
-      "linear-gradient(90deg, rgba(255, 95, 109, 0.8) 0%, rgba(255, 195, 113, 0.8) 25%, rgba(95, 255, 109, 0.8) 50%, rgba(95, 109, 255, 0.8) 75%, rgba(195, 95, 255, 0.8) 100%)",
-    "--diagonal":
-      "linear-gradient(120deg, rgba(14, 21, 46, 0.8) 0%, rgba(50, 50, 50, 0.8) 100%)",
-    "--shade":
-      "radial-gradient(circle at var(--m-x) var(--m-y), rgba(255, 255, 255, 0.15) 20%, rgba(0, 0, 0, 0) 80%)",
-    backgroundImage:
-      "var(--vivid-gradient), var(--dynamic-gradient), var(--diagonal), var(--shade)",
-    backgroundSize: "200% 200%, 150% 150%, 100%, 100%",
-    animation: "gradientShift 8s ease infinite",
-  };
-  
-  const gradientAnimation = `
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%, 100% 50%, 0% 0%, 50% 50%;
-    }
-    50% {
-      background-position: 100% 50%, 0% 50%, 50% 50%, 0% 0%;
-    }
-    100% {
-      background-position: 0% 50%, 100% 50%, 0% 0%, 50% 50%;
-    }
-  }`;
-  
-  // Inject animation styles dynamically
-  if (typeof document !== "undefined" && !document.getElementById("gradient-animation")) {
-    const style = document.createElement("style");
-    style.id = "gradient-animation";
-    style.textContent = gradientAnimation;
-    document.head.appendChild(style);
-  }
-  
-  
+  const beams = [
+    {
+      initialX: 10,
+      translateX: 10,
+      duration: 7,
+      repeatDelay: 3,
+      delay: 2,
+    },
+    {
+      initialX: 600,
+      translateX: 600,
+      duration: 3,
+      repeatDelay: 3,
+      delay: 4,
+    },
+    {
+      initialX: 100,
+      translateX: 100,
+      duration: 7,
+      repeatDelay: 7,
+      className: "h-6",
+    },
+    {
+      initialX: 400,
+      translateX: 400,
+      duration: 5,
+      repeatDelay: 14,
+      delay: 4,
+    },
+    {
+      initialX: 800,
+      translateX: 800,
+      duration: 11,
+      repeatDelay: 2,
+      className: "h-20",
+    },
+    {
+      initialX: 1000,
+      translateX: 1000,
+      duration: 4,
+      repeatDelay: 2,
+      className: "h-12",
+    },
+    {
+      initialX: 1200,
+      translateX: 1200,
+      duration: 6,
+      repeatDelay: 4,
+      delay: 2,
+      className: "h-6",
+    },
+    {
+        initialX: 1600,
+        translateX: 1400,
+        duration: 8,
+        repeatDelay: 6,
+        delay: 2,
+        className: "h-4",
+      },
+      {
+        initialX: 2000,
+        translateX: 1600,
+        duration: 10,
+        repeatDelay: 8,
+        delay: 4,
+        className: "h-6",
+      },
+      {
+        initialX: 2000,
+        translateX: 1600,
+        duration: 10,
+        repeatDelay: 8,
+        delay: 4,
+        className: "h-6",
+      },
+      {
+        initialX: 2000,
+        translateX: 1600,
+        duration: 10,
+        repeatDelay: 8,
+        delay: 4,
+        className: "h-6",
+      },
+      {
+        initialX: 2000,
+        translateX: 1600,
+        duration: 10,
+        repeatDelay: 8,
+        delay: 4,
+        className: "h-6",
+      },
+  ];
 
-  const updateStyles = () => {
-    if (refElement.current) {
-      console.log(state.current);
-      const { background, rotate, glare } = state.current;
-      refElement.current?.style.setProperty("--m-x", `${glare.x}%`);
-      refElement.current?.style.setProperty("--m-y", `${glare.y}%`);
-      refElement.current?.style.setProperty("--r-x", `${rotate.x}deg`);
-      refElement.current?.style.setProperty("--r-y", `${rotate.y}deg`);
-      refElement.current?.style.setProperty("--bg-x", `${background.x}%`);
-      refElement.current?.style.setProperty("--bg-y", `${background.y}%`);
-    }
-  };
   return (
     <div
-      style={containerStyle as React.CSSProperties}
-      className="relative isolate [contain:layout_style] [perspective:600px] transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] will-change-transform w-[320px] [aspect-ratio:17/21]"
-      ref={refElement}
-      onPointerMove={(event) => {
-        const rotateFactor = 0.4;
-        const rect = event.currentTarget.getBoundingClientRect();
-        const position = {
-          x: event.clientX - rect.left,
-          y: event.clientY - rect.top,
-        };
-        const percentage = {
-          x: (100 / rect.width) * position.x,
-          y: (100 / rect.height) * position.y,
-        };
-        const delta = {
-          x: percentage.x - 50,
-          y: percentage.y - 50,
-        };
-
-        const { background, rotate, glare } = state.current;
-        background.x = 50 + percentage.x / 4 - 12.5;
-        background.y = 50 + percentage.y / 3 - 16.67;
-        rotate.x = -(delta.x / 3.5);
-        rotate.y = delta.y / 2;
-        rotate.x *= rotateFactor;
-        rotate.y *= rotateFactor;
-        glare.x = percentage.x;
-        glare.y = percentage.y;
-
-        updateStyles();
-      }}
-      onPointerEnter={() => {
-        isPointerInside.current = true;
-        if (refElement.current) {
-          setTimeout(() => {
-            if (isPointerInside.current) {
-              refElement.current?.style.setProperty("--duration", "0s");
-            }
-          }, 300);
-        }
-      }}
-      onPointerLeave={() => {
-        isPointerInside.current = false;
-        if (refElement.current) {
-          refElement.current.style.removeProperty("--duration");
-          refElement.current?.style.setProperty("--r-x", `0deg`);
-          refElement.current?.style.setProperty("--r-y", `0deg`);
-        }
-      }}
+      ref={parentRef}
+      className={cn(
+        "h-96 md:h-[40rem]  dark:from-neutral-950 dark:to-neutral-800 relative flex items-center w-full justify-center overflow-hidden",
+        // h-screen if you want bigger
+        className
+      )}
     >
-      <div className="h-full grid will-change-transform origin-center transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] [transform:rotateY(var(--r-x))_rotateX(var(--r-y))] rounded-[var(--radius)] border border-slate-800 hover:[--opacity:0.6] hover:[--duration:200ms] hover:[--easing:linear] hover:filter-none overflow-hidden">
-        <div className="w-full h-full grid [grid-area:1/1] mix-blend-soft-light [clip-path:inset(0_0_0_0_round_var(--radius))]">
-          <div className={cn("h-full w-full bg-slate-950", className)}>
-            {children}
-          </div>
-        </div>
-        <div className="w-full h-full grid [grid-area:1/1] mix-blend-soft-light [clip-path:inset(0_0_1px_0_round_var(--radius))] opacity-[var(--opacity)] transition-opacity transition-background duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] will-change-background [background:radial-gradient(farthest-corner_circle_at_var(--m-x)_var(--m-y),_rgba(255,255,255,0.8)_10%,_rgba(255,255,255,0.65)_20%,_rgba(255,255,255,0)_90%)]" />
-        <div
-          className="w-full h-full grid [grid-area:1/1] mix-blend-color-dodge opacity-[var(--opacity)] will-change-background transition-opacity [clip-path:inset(0_0_1px_0_round_var(--radius))] [background-blend-mode:hue_hue_hue_overlay] [background:var(--pattern),_var(--rainbow),_var(--diagonal),_var(--shade)] relative after:content-[''] after:grid-area-[inherit] after:bg-repeat-[inherit] after:bg-attachment-[inherit] after:bg-origin-[inherit] after:bg-clip-[inherit] after:bg-[inherit] after:mix-blend-exclusion after:[background-size:var(--foil-size),_200%_400%,_800%,_200%] after:[background-position:center,_0%_var(--bg-y),_calc(var(--bg-x)*_-1)_calc(var(--bg-y)*_-1),_var(--bg-x)_var(--bg-y)] after:[background-blend-mode:soft-light,_hue,_hard-light]"
-          style={{ ...backgroundStyle }}
+      {beams.map((beam) => (
+        <CollisionMechanism
+          key={beam.initialX + "beam-idx"}
+          beamOptions={beam}
+          containerRef={containerRef}
+          parentRef={parentRef}
         />
-      </div>
+      ))}
+
+      {children}
+      <div
+        ref={containerRef}
+        className="absolute bottom-0 bg-neutral-100 w-full inset-x-0 pointer-events-none"
+        style={{
+          boxShadow:
+            "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset",
+        }}
+      ></div>
+    </div>
+  );
+};
+
+const CollisionMechanism = ({
+  parentRef,
+  containerRef,
+  beamOptions = {},
+}: {
+  containerRef: React.RefObject<HTMLDivElement>;
+  parentRef: React.RefObject<HTMLDivElement>;
+  beamOptions?: {
+    initialX?: number;
+    translateX?: number;
+    initialY?: number;
+    translateY?: number;
+    rotate?: number;
+    className?: string;
+    duration?: number;
+    delay?: number;
+    repeatDelay?: number;
+  };
+}) => {
+  const beamRef = useRef<HTMLDivElement>(null);
+  const [collision, setCollision] = useState<{
+    detected: boolean;
+    coordinates: { x: number; y: number } | null;
+  }>({
+    detected: false,
+    coordinates: null,
+  });
+  const [beamKey, setBeamKey] = useState(0);
+  const [cycleCollisionDetected, setCycleCollisionDetected] = useState(false);
+
+  useEffect(() => {
+    const checkCollision = () => {
+      if (
+        beamRef.current &&
+        containerRef.current &&
+        parentRef.current &&
+        !cycleCollisionDetected
+      ) {
+        const beamRect = beamRef.current.getBoundingClientRect();
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const parentRect = parentRef.current.getBoundingClientRect();
+
+        if (beamRect.bottom >= containerRect.top) {
+          const relativeX =
+            beamRect.left - parentRect.left + beamRect.width / 2;
+          const relativeY = beamRect.bottom - parentRect.top;
+
+          setCollision({
+            detected: true,
+            coordinates: {
+              x: relativeX,
+              y: relativeY,
+            },
+          });
+          setCycleCollisionDetected(true);
+        }
+      }
+    };
+
+    const animationInterval = setInterval(checkCollision, 50);
+
+    return () => clearInterval(animationInterval);
+  }, [cycleCollisionDetected, containerRef,parentRef]);
+
+  useEffect(() => {
+    if (collision.detected && collision.coordinates) {
+      setTimeout(() => {
+        setCollision({ detected: false, coordinates: null });
+        setCycleCollisionDetected(false);
+      }, 2000);
+
+      setTimeout(() => {
+        setBeamKey((prevKey) => prevKey + 1);
+      }, 2000);
+    }
+  }, [collision]);
+
+  return (
+    <>
+      <motion.div
+        key={beamKey}
+        ref={beamRef}
+        animate="animate"
+        initial={{
+          translateY: beamOptions.initialY || "-200px",
+          translateX: beamOptions.initialX || "0px",
+          rotate: beamOptions.rotate || 0,
+        }}
+        variants={{
+          animate: {
+            translateY: beamOptions.translateY || "1800px",
+            translateX: beamOptions.translateX || "0px",
+            rotate: beamOptions.rotate || 0,
+          },
+        }}
+        transition={{
+          duration: beamOptions.duration || 8,
+          repeat: Infinity,
+          repeatType: "loop",
+          ease: "linear",
+          delay: beamOptions.delay || 0,
+          repeatDelay: beamOptions.repeatDelay || 0,
+        }}
+        className={cn(
+          "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-gradient-to-t from-indigo-500 via-purple-500 to-transparent",
+          beamOptions.className
+        )}
+      />
+      <AnimatePresence>
+        {collision.detected && collision.coordinates && (
+          <Explosion
+            key={`${collision.coordinates.x}-${collision.coordinates.y}`}
+            className=""
+            style={{
+              left: `${collision.coordinates.x}px`,
+              top: `${collision.coordinates.y}px`,
+              transform: "translate(-50%, -50%)",
+            }}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+const Explosion = ({ ...props }: React.HTMLProps<HTMLDivElement>) => {
+  const spans = Array.from({ length: 20 }, (_, index) => ({
+    id: index,
+    initialX: 0,
+    initialY: 0,
+    directionX: Math.floor(Math.random() * 80 - 40),
+    directionY: Math.floor(Math.random() * -50 - 10),
+  }));
+
+  return (
+    <div {...props} className={cn("absolute z-50 h-2 w-2", props.className)}>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute -inset-x-10 top-0 m-auto h-2 w-10 rounded-full bg-gradient-to-r from-transparent via-indigo-500 to-transparent blur-sm"
+      ></motion.div>
+      {spans.map((span) => (
+        <motion.span
+          key={span.id}
+          initial={{ x: span.initialX, y: span.initialY, opacity: 1 }}
+          animate={{
+            x: span.directionX,
+            y: span.directionY,
+            opacity: 0,
+          }}
+          transition={{ duration: Math.random() * 1.5 + 0.5, ease: "easeOut" }}
+          className="absolute h-1 w-1 rounded-full bg-gradient-to-b from-indigo-500 to-purple-500"
+        />
+      ))}
     </div>
   );
 };

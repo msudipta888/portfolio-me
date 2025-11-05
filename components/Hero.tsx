@@ -25,7 +25,8 @@ export default function Hero() {
 
   return (
     <div className="w-full -mt-11 h-screen flex items-center justify-center relative overflow-hidden   lg:h-screen lg:mt-24">
-    
+          <BackgroundBeams/>
+
       <div className="flex flex-col-reverse gap-y-8 md:flex-row items-center justify-between w-full max-w-6xl px-4">
        
         <div className="w-full md:w-1/2 text-center md:text-left space-y-6">
@@ -79,7 +80,6 @@ export default function Hero() {
          )}
            
       </div>
-      <BackgroundBeams/>
 
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:60px_60px]" />
 
