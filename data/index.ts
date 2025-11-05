@@ -48,24 +48,6 @@ export const navItems = [
       iconLists: ["/js.svg", "/node.svg","/telegraf.png","/ai.png"],
       link: "https://github.com/msudipta888/ContentCrafter",
     },
-    {
-  id: 5,
-  title: "ChatWithPDF — A RAG Chat Bot",
-  des: "A Telegram bot that lets you chat with PDFs using RAG-based AI. Simply upload a PDF and ask any question to get accurate, context-aware answers instantly.",
-  img: "/chat.png",
-  iconLists: [
-    '/icons/next.png',
-    '/icons/tailwind.svg',
-    '/icons/typescript.svg',
-    '/node.svg',
-    '/icons/api.svg',
-    '/icons/mongodb.jpg',
-    '/icons/docker.svg',
-    '/icons/rabbitmq.svg'
-  ],
-  link: "https://chatwithpdf-amber.vercel.app",
-}
-
   ];
   
 
@@ -77,11 +59,11 @@ export const navItems = [
   export const socialMedia = [
     {
       id: "IconBrandLinkedin",
-      link:"'https://linkdin.com" 
+      link:"https://www.linkedin.com/in/sudipta-mondal-009625255/" 
     },
     {
       id: "IconBrandTwitter",
-      link:"'https://twitter.com" 
+      link:"https://x.com/S9248662258797" 
     },
     {
       id:"IconBrandGithub",

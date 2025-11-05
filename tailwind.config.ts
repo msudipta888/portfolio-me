@@ -94,7 +94,11 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+<<<<<<< HEAD
       
+=======
+        
+>>>>>>> 3c86b83c63d6349dd9667c66340e37a3cb951e95
         moveHorizontal: {
           "0%": {
             transform: "translateX(-50%) translateY(-10%)",
@@ -144,7 +148,10 @@ const config = {
         },
       },
       animation: {
+<<<<<<< HEAD
        
+=======
+>>>>>>> 3c86b83c63d6349dd9667c66340e37a3cb951e95
         first: "moveVertical 30s ease infinite",
         second: "moveInCircle 20s reverse infinite",
         third: "moveInCircle 40s linear infinite",
