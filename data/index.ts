@@ -45,7 +45,8 @@ export const navItems = [
       img: "/aibot.jpg",
       iconLists: ["/js.svg", "/node.svg","/telegraf.png","/ai.png"],
       link: "https://github.com/msudipta888/ContentCrafter",
-    },
+    }
+      
   ];
   
 
