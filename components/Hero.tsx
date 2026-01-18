@@ -40,7 +40,7 @@ export default function Hero() {
           </p>
           {show && (
             <div className="py-4 relative z-20">
-              <a href="https://drive.google.com/file/d/1zpHI3C-j3kEhiYLmXOQ-6M8zmqE9YtP4/view">
+              <a href="https://drive.google.com/file/d/1fcUZCln3IiRW7S8L9oLpiNrZwzXUldwA/view?usp=sharing">
               <MagicButton title="Download CV" Icon={<Download />}/>
               </a>
             </div>
